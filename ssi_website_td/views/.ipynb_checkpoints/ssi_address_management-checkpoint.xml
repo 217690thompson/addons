@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <template id="ssi_address_management" inherit_id="website_sale.address">
+            <xpath expr="//div[@id='wrap']/div/div[2]/div[2]/div/t[4]" position="replace"></xpath>
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div/div[12]/select/t" position="replace">
+                <t t-foreach="countries" t-as="c">
+                    <t t-if="c.id == 233">
+                        <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)">
+                            <t t-esc="c.name"></t>
+                        </option>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

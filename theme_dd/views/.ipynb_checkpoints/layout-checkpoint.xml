@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Customize header -->
+    <template id="custom_layout" inherit_id="portal.frontend_layout" name="Custom Layout">
+        <!-- Create custom navbar above default navbar -->
+        <xpath expr="//div[@id='wrapwrap']//nav" position="replace">
+            <t t-call="theme_dd.top_navbar"/>
+            <t t-call="theme_dd.bottom_navbar"/>
+        </xpath>
+    </template>
+</odoo>

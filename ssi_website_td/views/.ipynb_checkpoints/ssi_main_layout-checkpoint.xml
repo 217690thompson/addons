@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <template id="ssi_main_layout" inherit_id="website.layout">
+            <xpath expr="//div[@id='wrapwrap']" position="after">
+                <!-- Global site tag (gtag.js) - Google Ads: 791770221 -->
+                <script async="true" src="https://www.googletagmanager.com/gtag/js?id=AW-791770221" 
+                        t-if="website and website.google_analytics_key and not editable"/>
+                <script t-if="website and website.google_analytics_key and not editable">
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'AW-791770221');
+                    gtag('config', 'AW-791770221');
+                </script>
+                <!-- Event snippet for Website Purchases conversion page -->
+                <script id="tracking_code_conv" t-if="website and website.google_analytics_key and not editable and 
+                                                      main_object.name == 'confirmation'">
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-791770221/EKTjCP3PkaABEO3oxfkC',
+                        'value': <t t-raw="order.amount_total"/>,
+                        'currency': 'USD',
+                        'transaction_id': '<t t-raw="order.name"/>'
+                    });
+                </script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

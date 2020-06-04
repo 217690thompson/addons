@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <template id="ssi_category_list" inherit_id="website_sale.categories_recursive">
+            <xpath expr="//li" position="replace">
+                <t t-if="not c.parent_id or c.parent_id.id in parent_category_ids">
+                    <li class="nav-item">
+                        <a t-att-href="'/shop/category/' + slug(c)" 
+                           t-attf-class="nav-link#{' active' if c.id == int(category or 0) else ''}">
+                            <span t-field="c.name"/>
+                        </a>
+                        <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy">
+                            <t t-foreach="c.child_id" t-as="c">
+                                <t t-if="not search or c.id in search_categories_ids">
+                                    <t t-call="website_sale.categories_recursive"/>
+                                </t>
+                            </t>
+                        </ul>
+                    </li>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

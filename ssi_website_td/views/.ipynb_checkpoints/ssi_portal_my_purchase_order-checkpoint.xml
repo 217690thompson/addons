@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <template id="ssi_portal_my_purchase_order" inherit_id="purchase.portal_my_purchase_order">\
+            <xpath expr="//div[hasclass('col-lg-12')]" position="replace">
+                <div class="col-lg-12">
+                    <h4>
+                        Purchase Order
+                        <span t-esc="order.name"/>
+                    </h4>
+                </div>
+            </xpath>
+            <xpath expr="//div[hasclass('col-lg-1')]/img" position="replace">
+                <img t-att-src="'/web/image/purchase.order.line/%s/product_image/48x48' % ol.id" alt="Product"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

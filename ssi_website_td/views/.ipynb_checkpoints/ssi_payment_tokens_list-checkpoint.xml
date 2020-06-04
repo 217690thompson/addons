@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <template id="ssi_payment_tokens_list" inherit_id="payment.payment_tokens_list">
+            <xpath expr="//div[hasclass('float-left')]" position="after">
+                <script>
+                    console.log('so far so good');
+                    let radios = document.querySelectorAll('input[type="radio"]');
+                    let radioPO = undefined;
+
+                    radios.forEach((radio) =&gt; {
+                        if(radio.parentElement.innerHTML.includes('Pay by Purchase Order')){
+                            radioPO = radio;
+                            radio.checked = false;
+                        }
+                    });
+
+                    let inputPO = document.querySelector('input[name="registerPO"]');
+                    let message = document.querySelector('#po-message-error');
+
+
+                    console.log(inputPO);
+
+
+                    radioPO.addEventListener('click', function(event){
+                        if(inputPO.value === ''){
+                            event.preventDefault();
+                            radioPO.checked = false;
+                            inputPO.focus();
+                            message.removeAttribute('hidden');
+                        } else {
+                            radioPO.checked = true;
+                            message.setAttribute('hidden', 'hidden');
+                        }
+                    });
+
+                    inputPO.addEventListener('blur', function(){
+                        poNumber = this.value;
+                        fetch('/shop/cart/po', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8",
+                            },
+                            body: JSON.stringify({ref: poNumber}),
+                        })
+                        .then(response =&gt; response); // parses response to JSON
+                    });
+                </script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="ssi_header_shop_my_cart_link" inherit_id="website_sale.header">
+            <xpath expr="//header//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"></xpath>
+            <xpath expr="//header//ul[@id='top_menu']//a[hasclass('nav-link')]" position="replace"></xpath>
+            <xpath expr="//header//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"></xpath>
+        </template>
+    </data>
+</odoo>

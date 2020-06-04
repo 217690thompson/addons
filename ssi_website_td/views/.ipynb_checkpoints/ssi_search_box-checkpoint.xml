@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="ssi_search_box" inherit_id="website_sale.search">
+            <xpath expr="//t/t/t" position="replace">
+                <t t-set="action" t-value="'/shop'"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

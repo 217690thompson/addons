@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <template id="ssi_payment" inherit_id="website_sale.payment">
+            <xpath expr="//div[@id='oe_structure_website_sale_payment_1']" position="after">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>PO Number</h3>
+                        <input class="form-control" name="registerPO" placeholder="PO#"/>
+                        <input class="form-control soNum"  t-att-value="website_sale_order.id" hidden="hidden"/>
+                        <p id="po-message-error" class="text-danger" hidden="hidden">You must enter a purchase order number.</p>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@id='payment_method']/t/t[11]" position="replace">
+                <t t-set="back_button_txt" t-value="'Return to Cart'"/>
+            </xpath>
+            <xpath expr="//div[hasclass('js_payment')]/form/a" position="replace">
+                <a role="button" class="btn btn-primary a-submit">
+                    <span t-if="order.amount_total &gt; 0">Pay Now <span class="fa fa-chevron-right"/></span>
+                    <span t-if="order.amount_total == 0">Confirm Order <span class="fa fa-chevron-right"/></span>
+                </a>
+            </xpath>
+        </template>
+    </data>
+</odoo>
